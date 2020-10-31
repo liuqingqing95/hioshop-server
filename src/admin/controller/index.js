@@ -20,10 +20,12 @@ module.exports = class extends Base {
         const TokenSerivce = this.service('qiniu'); // 服务里返回token
         let data = await TokenSerivce.getQiniuToken(); // 取得token值 goods
         let qiniuToken = data.uploadToken;
+        const resource = this.model('resource')
+        let item = await resource.where({token: qiniuToken}).select();
         let domain = data.domain;
         let info ={
             token:qiniuToken,
-            url:domain
+            url: '/resource/1a60b2f0-1b84-11eb-85a1-cd58884de080_a.jpg'
         };
         return this.success(info);
     }

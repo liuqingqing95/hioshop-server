@@ -2,8 +2,8 @@
 module.exports = {
     default_module: 'api',
     weixin: {
-        appid: 'wx7af111110000000', // 小程序 appid
-        secret: 'cb8e5adce569f9bddce5b8123123e1115aaddce505', // 小程序密钥
+        appid: 'wx0914f9c4ce38f7ff', // 小程序 appid
+        secret: '3934fff3fa0ab1fae644b8fc10b456eb', // 小程序密钥
         mch_id: '15988888888', // 商户帐号ID
         partner_key: 'asdasdasdasdasdasdasd', // 微信支付密钥
         notify_url: 'https://www.您的域名.com/api/pay/notify' // 微信支付异步通知
