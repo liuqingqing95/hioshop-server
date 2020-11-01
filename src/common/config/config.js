@@ -1,5 +1,7 @@
 // default config
 module.exports = {
+    host: '192.168.1.101',
+    port: 8360,
     default_module: 'api',
     weixin: {
         appid: 'wx0914f9c4ce38f7ff', // 小程序 appid

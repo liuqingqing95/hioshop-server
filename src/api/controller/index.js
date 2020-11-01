@@ -15,11 +15,21 @@ module.exports = class extends Base {
         //auto render template file index_index.html
         // return this.display();
         if (this.isPost) {
-            const filetoken = this.post("token")
+            // 根据token值获取用户id
+            think.token = this.ctx.header['x-nideshop-token'] || '';
+            const tokenSerivce = think.service('token', 'admin');
+            think.userId = await tokenSerivce.getUserId();
+
+            // 只允许登录操作
+            if (this.ctx.controller !== 'auth') {
+                if (think.userId <= 0) {
+                    return this.fail(401, '请先登录');
+                }
+            }
+
             const file = this.file('file');
-            console.log(post)
-            if (!filetoken) {
-                return this.fail("缺乏token")
+            if (!file) {
+                return this.fail("空数据")
             }
             const data = fs.readFileSync(file.path)
             if (data) {
@@ -34,15 +44,18 @@ module.exports = class extends Base {
                 fs.mkdirSync(think.ROOT_PATH + '/storage/resource')
             }
             const filename = uuid.v1() + '_' + file.name
-            const fileurl = '/storage/resource/' + filename
-            fs.writeFileSync(think.ROOT_PATH + fileurl, data)
+            const fileurl = '/resource/' + filename
+            fs.writeFileSync(think.ROOT_PATH + '/storage' + fileurl, data)
             const resource = this.model('resource')
             await resource.add({
-                token: filetoken,
-                url: fileurl,
+                // token: filetoken,
+                url: fileurl, //临时存储
+                status: 0, //临时存储
             })
-            console.log("storage resource in "+ think.ROOT_PATH + '/resource/' + filename)
-            return this.success(fileurl)
+            console.log("storage resource in " + think.ROOT_PATH + '/resource/' + filename)
+            const host = think.config()['host']
+            const port = think.config()['port']
+            return this.success('http://'+host+':'+port+fileurl)
         }
     }
 

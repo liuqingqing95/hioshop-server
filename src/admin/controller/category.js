@@ -74,6 +74,17 @@ module.exports = class extends Base {
         values.is_show = values.is_show ? 1 : 0;
         values.is_channel = values.is_channel ? 1 : 0;
         values.is_category = values.is_category ? 1 : 0;
+        // 需要跟新资源状态
+        const resource = this.model('resource');
+        const item1 = await resource.where({url: values.img_url}).find();
+        if (item1.length > 0) {
+            resource.where({url: values.img_url}).update({url: values.img_url, status: 1})
+        }
+        const item2 = await resource.where({url: values.icon_url}).select();
+        if (item2.length > 0) {
+            resource.where({url: values.icon_url}).update({url: values.icon_url, status: 1})
+        }
+
         if (id > 0) {
             await model.where({
                 id: id
