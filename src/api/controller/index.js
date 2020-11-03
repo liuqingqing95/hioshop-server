@@ -53,7 +53,7 @@ module.exports = class extends Base {
                 status: 0, //临时存储
             })
             console.log("storage resource in " + think.ROOT_PATH + '/resource/' + filename)
-            const host = think.config()['host']
+            const host = think.config()['host_public']
             const port = think.config()['port']
             return this.success('http://'+host+':'+port+fileurl)
         }

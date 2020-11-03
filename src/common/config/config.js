@@ -1,6 +1,7 @@
 // default config
 module.exports = {
     host: '192.168.1.101',
+    host_public: '192.168.1.101',
     port: 8360,
     default_module: 'api',
     weixin: {
