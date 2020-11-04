@@ -54,8 +54,8 @@ module.exports = class extends Base {
             })
             console.log("storage resource in " + think.ROOT_PATH + '/resource/' + filename)
             const host = think.config()['host_public']
-            const port = think.config()['port']
-            return this.success('http://'+host+':'+port+fileurl)
+            const port = think.config()['port_public']
+            return this.success('https://'+host+':'+port+fileurl)
         }
     }
 

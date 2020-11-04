@@ -16,8 +16,9 @@ const app = (callback, port, host, think) => {
 // default config
 module.exports = {
     //host: '172.21.0.5',
+    host_local: '172.21.0.5',// TODO [yz] 需要用户配置
     host_public: '58.87.124.121', // TODO [yz] 需要用户配置
-    port: 8080, // TODO [yz] 需要用户配置
+    port_public: 8080, // TODO [yz] 需要用户配置
     default_module: 'api',
     createServer: app,
     weixin: {
