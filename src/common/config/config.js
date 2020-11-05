@@ -2,8 +2,8 @@ import fs from 'fs';
 import https from 'https';
 
 const options = {
-  key: fs.readFileSync(think.ROOT_PATH + '/2_yangzheng.ink.key'), // TODO [yz] 需要用户配置
-  cert: fs.readFileSync(think.ROOT_PATH + '/1_yangzheng.ink_bundle.crt') // TODO [yz] 需要用户配置
+  key: fs.readFileSync(think.ROOT_PATH + '/storage/cert/2_yangzheng.ink.key'), // TODO [yz] 需要用户配置
+  cert: fs.readFileSync(think.ROOT_PATH + '/storage/cert/1_yangzheng.ink_bundle.crt') // TODO [yz] 需要用户配置
 };
 
 const app = (callback, port, host, think) => {
