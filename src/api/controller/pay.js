@@ -63,7 +63,7 @@ module.exports = class extends Base {
             id: orderInfo.user_id
         }).getField('weixin_openid', true);
         if (think.isEmpty(openid)) {
-            return this.fail(400, '微信支付失败?');
+            return this.fail(400, '支付用户不存在');
         }
         const WeixinSerivce = this.service('weixin', 'api');
         try {

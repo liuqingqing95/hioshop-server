@@ -9,6 +9,7 @@ const { Console } = require('console');
 const { resolve } = require('path')
 const fs = require('fs');
 const uuid = require('uuid');
+const { think } = require('thinkjs');
 
 module.exports = class extends Base {
     async indexAction() {
@@ -55,7 +56,12 @@ module.exports = class extends Base {
             console.log("storage resource in " + think.ROOT_PATH + '/resource/' + filename)
             const host = think.config()['host_public']
             const port = think.config()['port_public']
-            return this.success('https://'+host+':'+port+fileurl)
+            if (think.env == 'production') {
+                return this.success('https://'+host+':'+port+fileurl)
+            } else {
+                return this.success('http://'+host+':'+port+fileurl)
+            }
+            
         }
     }
 
