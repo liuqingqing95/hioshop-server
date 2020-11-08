@@ -3,7 +3,8 @@
   "description": "hioshop - open source mini program shop",
   "version": "1.0.0",
   "scripts": {
-    "start": "node --inspect=10000 development.js",
+    "dev": "node --inspect=10000 development.js",
+    "start": "node production.js",
     "compile": "babel --no-babelrc src/ --presets think-node --out-dir app/",
     "lint": "eslint src/",
     "lint-fix": "eslint --fix src/"
