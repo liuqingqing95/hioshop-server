@@ -1,29 +1,9 @@
-import fs from 'fs';
-import https from 'https';
-
-const options = {
-  key: fs.readFileSync(think.ROOT_PATH + '/storage/cert/2_yangzheng.ink.key'), // TODO [yz] 需要用户配置
-  cert: fs.readFileSync(think.ROOT_PATH + '/storage/cert/1_yangzheng.ink_bundle.crt') // TODO [yz] 需要用户配置
-};
-
-const app = (callback, port, host, think) => {
-  console.log("[yz] https://172.21.0.5:8080") // TODO [yz] 需要用户配置
-  let server = https.createServer(options, callback);
-  server.listen(8080, '172.21.0.5'); // TODO [yz] 需要用户配置
-  return server;
-}
-
 // default config
 module.exports = {
-    //host: '172.21.0.5',
-    host_local: '172.21.0.5',// TODO [yz] 需要用户配置
-    host_public: '58.87.124.121', // TODO [yz] 需要用户配置
-    port_public: 8080, // TODO [yz] 需要用户配置
     default_module: 'api',
-    createServer: app,
     weixin: {
-        appid: 'wx0914f9c4ce38f7ff', // 小程序 appid
-        secret: '3934fff3fa0ab1fae644b8fc10b456eb', // 小程序密钥
+        appid: 'wx7af111110000000', // 小程序 appid
+        secret: 'cb8e5adce569f9bddce5b8123123e1115aaddce505', // 小程序密钥
         mch_id: '15988888888', // 商户帐号ID
         partner_key: 'asdasdasdasdasdasdasd', // 微信支付密钥
         notify_url: 'https://www.您的域名.com/api/pay/notify' // 微信支付异步通知

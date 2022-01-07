@@ -2,6 +2,11 @@ const Base = require('./base.js');
 const moment = require('moment');
 
 module.exports = class extends Base {
+	async checkLoginAction(){
+		if(think.userId == 0){
+			return this.fail(404,'请登录');
+		}
+	}
     async indexAction() {
         const goodsOnsale = await this.model('goods').where({is_on_sale: 1,is_delete:0}).count();
         const orderToDelivery = await this.model('order').where({order_status: 300}).count();
@@ -20,12 +25,10 @@ module.exports = class extends Base {
         const TokenSerivce = this.service('qiniu'); // 服务里返回token
         let data = await TokenSerivce.getQiniuToken(); // 取得token值 goods
         let qiniuToken = data.uploadToken;
-        // const resource = this.model('resource')
-        // let item = await resource.where({token: qiniuToken}).select();
         let domain = data.domain;
         let info ={
             token:qiniuToken,
-            url: '/resource/1a60b2f0-1b84-11eb-85a1-cd58884de080_a.jpg' // FIXME 20201101 改成动态获取的
+            url:domain
         };
         return this.success(info);
     }

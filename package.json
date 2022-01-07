@@ -3,7 +3,7 @@
   "description": "hioshop - open source mini program shop",
   "version": "1.0.0",
   "scripts": {
-    "start": "node --inspect=10000 development.js",
+    "start": "node development.js",
     "compile": "babel --no-babelrc src/ --presets think-node --out-dir app/",
     "lint": "eslint src/",
     "lint-fix": "eslint --fix src/"
@@ -20,8 +20,6 @@
     "nanoid": "^2.1.1",
     "node-wget": "^0.4.3",
     "pinyin": "^2.9.0",
-    "puppeteer": "^5.4.1",
-    "puppeteer-core": "^5.4.1",
     "qiniu": "^7.2.1",
     "querystring": "^0.2.0",
     "request": "^2.81.0",
